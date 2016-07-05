@@ -1,0 +1,121 @@
+1. 4 modes:
+	Normal mode	(ESC)	
+	Insert mode	(i | s)
+	Visual mode	(v | ctl + v | shift + v)
+	Command-line mode(:)
+
+2. Key Movement
+	h	Left
+	l	Right
+	k	Up line
+	j	Down line
+	0	Start of line
+	^	First char of line
+	$	End of line
+	n + hlkj
+	ctrl | shift + left | right arrow	word
+	:goto n
+	:go n
+
+3. Open files
+	3.1 Open file along with vim
+		vim file
+		vim file1 file2
+		vim *.txt
+	3.2 Open file from inside Vim
+		:e file
+		:e file1 file2 (Does not work)
+		:e *.txt(Does not work if there are more than 1 txt file)
+	3.3 Open file and go to a line
+		Vim +n file
+		:e +n file
+
+4. Switch file(ibuffer)
+	:ls		List buffer
+	:buffers	List buffer
+	:files		List files
+
+	:next		next buffer
+	:previous	previous buffer
+	:first		first buffer
+	:last		last buffer
+	:b | bu | buffer n	goto buffer n
+
+5. Linux cmd:
+	:cd		change directory
+	:pwd		print working directory
+
+	
+6. Tab:
+	vim -p file1 file2 	open files in different tabs
+	:tabnew			open a new tab with a new buffer
+	:tabclose		close current tab
+	:tabclose!		close current tab by force
+	:tabnext		switch to next tab
+	:tabprevious		switch to prev tab
+	:tablast		switch to last tab
+	:tabfirst		switch to first tab
+	:tabedit file.txt	if file.txt exists open it in a new tab, other wise create file.txt in a new tab
+	:tabedit file1 file2	fail
+	:tabedit *.txt		fail if there are more than one .txt file in current dir
+	:tabfind file.txt	if file.txt exists, open it in a new tab, otherwise failed to open it
+	:tabdo w!		perform saving on all tabs
+7. Split windows:
+	vim -o|O file1 file2 file3	open files in different windows (vertical | horizontal)
+	:vsplit | vs		split window vertically(each window edit the same file)
+	:split | sp		split window horizontally(each window edit the same file)
+	:vsplit | vs file	split window and open the file in new window
+	:close			close current window
+
+8. Save file:
+	:update | up fileName	update the current buffer if it is modified. If the file does not have a name(never saved before) file name is required	
+	:w 			same as above
+	:save | saveas file	save current buffer to file
+	:w file			same as above
+	:auto savewrite		auto save buffer when switch buffer or execute external cmd
+9. Quit:
+	:quit | q		quit if no change
+	:qa | quitall
+	:quit! | q!		quit by force
+	:x | ZZ 		quit and save if the buffer has a file name
+	:xa			quit and save all buffers
+10. Delete:
+	Normal mode delete
+	x			delete 1 char under cursor
+	X			delete 1 char before cursor
+	dw			delete 1 word(after cursor)
+	ndw			delete n words
+	dd			delete the whole line
+	n,mdd			delete from line n to m begin with current line(no space between m and dd)
+	ndd			delete n line from current line	
+	D			delete from the cursor to the end of the line
+	visual mode delete
+	d | x			delete selected text 
+
+11. Select:
+	v			switch normal mode to visual mode, then use movement to select content
+	V			switch normal mode to visual line mode, then use movement to select lines
+	nv | nV			select n lines
+	Ctrl + v		switch normal mode to visual block 
+	gv			select the previous selection
+	vas			select a sentance
+	vap			select a paragraph
+
+12. Copy:
+	Normal mode copy
+	ynw			copy n words from cursor
+	yy			copy 1 line of cursor
+	nyy			copy n lines from cursor
+	"+5yy			copy 5 lines to system clipboard
+
+	Visual mode copy
+	y			copy selected text
+	"+y			copy to system clipboard
+
+13. Paste:
+	p			paste before cursor
+	P			paste after cursor
+	np			paste n times
+	"+p			paste from system clipboard in normal mode
+	Shift + Ins		paste from system clipboard in insertion mode
+

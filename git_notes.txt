@@ -1,0 +1,98 @@
+Help:
+	git help <verb>
+
+Configure git server:
+	https://help.github.com/articles/generating-ssh-keys/
+	Step 1: Check for SSH keys
+		ls -al ~/.ssh
+		if id_dsa.* do not exist do step2
+	Step 2: Generate a new SSH key
+		ssh-keygen -t rsa -b 4096 -C "yao.wanhui@gmail.com"
+	Step 3: Add your key to the ssh-agent
+		eval "$(ssh-agent -s)"
+		ssh-add ~/.ssh/id_rsa
+
+	Step 4: Add your SSH key to your account
+		copy public key to clipboard
+			xclip -sel clip < ~/.ssh/id_rsa.pub
+		Add SSH key to git server
+	Step 5: Test the connection
+		ssh -T git@github.com		
+
+Initialize branch:
+	git init
+
+Configure git:
+	user info:
+		git config [--global] user.name "wanhui"
+		git config [--global] user.email "yao.wanhui@gmail.com"
+	Text editor:
+		git config [--global] core.editor vim
+	Display configuration info:
+		git config --list
+		git config <key>	example: git config user.name
+
+Clone:
+	git clone git@github.com:wanhuiconcordia/puretest.git [localpath]
+
+Check status:
+	git status
+
+Add files to repository:
+	git add *
+
+Commit:
+	git commit -a
+
+Remove file from repository:
+	git rm test.txt	//remove from local repository
+	git commit -m
+	git push
+
+Rename | move file within repository:
+	git move test.txt path/test_rename.txt
+	git commit -a
+	git push
+
+Check log:
+	git log
+	git log -p -2	show the log and difference of last 2 commition
+
+diff:
+	git diff		check unstaged
+	git diff --cached | --staged	check staged
+
+.gitignore:
+	https://github.com/github/gitignore
+	# no .a files
+	*.a
+	# but do track lib.a, even though you're ignoring .a files above
+	!lib.a
+	# only ignore the TODO file in the current directory, not subdir/TODO
+	/TODO
+	# ignore all files in the build/ directory
+	build/
+	# ignore doc/notes.txt, but not doc/server/arch.txt
+	doc/*.txt
+	# ignore all .pdf files in the doc/ directory
+	doc/**/*.pdf	
+	
+Add local branch:
+	git branch dev
+
+Delete local branch:
+	git branch -d|-D dev
+
+Switch branch:
+	git checkout test
+
+Add remote branch:
+	git remote add dev git@github.com:wanhuiconcordia/puretest.git
+
+Delete remote branch:
+	git push origin --delete dev
+
+Show remote branch:
+	git branch -r
+
+

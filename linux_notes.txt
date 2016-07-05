@@ -1,0 +1,53 @@
+command line shortcuts:
+	ctrl+d : delete next char
+	crtl+k : delete rest of line
+	ctrl+a : go to start
+	ctrl+e : go to end of line
+	ctrl+b : go backwards without deleting
+	ctrl+f : go forward without deleting
+
+Install development tools:
+	Arch: pacman -S base-devel
+	Ubunto: aptitude install build-essential
+
+Compress & Uncompress with tar:
+	tar -zcvf source des.tar.gz
+	tar -zxvf des.tar.gz
+	tar -tvf des.tar.gz 	//list files
+
+Compress & Uncompress with RAR:
+	zip -r des.zip sourceForder
+	unzip des.zip
+
+Compress & Uncompress with RAR:
+	rar a des.rar source
+	unrar l des.rar	//list files
+	unrar e des.rar /path	//extract
+
+Check running process:
+	ps aux | grep processName
+
+Check port:
+	fuser 2020/tcp
+
+SSH copy from 168.144.91.75 to localhost
+	scp laoyao@168.144.91.75:/path/fileName localPath/
+	scp -r laoyao@168.144.91.75:/path	/localPath/
+SSH copy local file to remote host
+	scp /path/fileName laoyao@168.144.91.75:/path/
+	scp -r laoyao@168.144.91.75:/path/ /localPath/
+
+Softlink
+	ln -s path/sourceFile | sourceForder path/desLinkName
+
+Start services:
+	systemctl start | stop sshd.service
+	systemctl start | stop httpd.service
+	systemctl start | stop tomcat7
+
+Enable services:
+	systemctl enable | disable sshd.service
+	systemctl enable |disable httpd.service
+	systemctl enable | disable tomcat7
+
+

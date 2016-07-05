@@ -1,0 +1,632 @@
+file exchange:
+	smb://xxx.xxx.xxx.9
+
+Install gcc, g++ perl...
+	sudo aptitude install build-essential
+	
+compress and uncompress with tar
+	tar -zcvf source des.zip
+	tar -zxvf source.tar
+	tar -tvf source.tar 	//list files
+
+Open file manager:
+	nautilus path
+	dolphin path
+
+check port:
+	fuser 2020/tcp
+	lsof -iTCP:2020
+
+Compile cpp:
+	g++ -lpthread -lboost_system client.cpp -o client
+
+SSH copy from xxx.xxx.xxx.75 to localhost
+	scp root@xxx.xxx.xxx.75:/home/ubiserver/UbiServer-Git/src/clientManager.cpp /tmp/ahahaha.cpp
+SSH copy local file to remote host
+	scp /tmp/ahahaha.cpp root@xxx.xxx.xxx.75:/home/ubiserver/pipi.cpp
+Login SSH
+	ssh root@xxx.xxx.xxx.75
+
+qmake:		
+	qmake ../ CONFIG+=Release for release
+	qmake CONFIG+=release CONFIG-=debug
+	
+Change Ip of Git server:
+	Agent admitted failure to sign using the key.
+	Solution: https://help.github.com/articles/error-agent-admitted-failure-to-sign
+	1. Login git server web
+	2. Profile settings/ SSH keys/ Add SSH Key
+	3. Delete ~/.ssh/know_hosts
+	4. cd QT_PROJ/UbiServer-Git
+	5. git remote add unstable git@xxx.xxx.xxx.12:shingetsu/ubiserver.git
+	6. ssh-add
+	7. ssh root@xxx.xxx.xxx.12
+	8. git push -u unstable unstable
+
+Soft link
+	ln -s /webroot/home/httpd/test.com/index.php /home/vivek/index.php
+
+start up ssh on arch linux:
+	# sudo systemctl start sshd.service
+	# sudo systemctl enable sshd.service
+
+Change owner
+	sudo chown ting:ting(/*user:group*/) folder/ 
+
+Install QT 5.3
+	url:http://www.sysads.co.uk/2014/05/install-qt-5-3-ubuntu-14-04/
+
+	1. Download online installer for Linux 32-bit
+		http://qt-project.org/downloads
+	2. Make the installer to be executable
+		2.1 nano /etc/sudoers
+			PdaAdmin ALL=(ALL:ALL) ALL
+		2.2 sudo chmod u+x qt-opensource-linux-x86-1.6.0-5-online.run
+	3. Creater an installation directory
+		mkdir /home/wanhui/.sysroot
+	4. Install QT 5.3 by run installer
+		./qt-opensource-linux-x86-1.6.0-5-online.run
+		Make sure choose the option of CLOUD TOOLS
+	5. Add the new installed qmake as default
+		5.1 Edit /etc/profile
+		5.2 Add qmake path
+			PATH=/home/ting/.sysroot/5.3/gcc/bin/:$PATH
+			export PATH
+		5.3 Active the path immediately
+			source /etc/profile
+		5.4 See if the new qmake is in PATH
+			echo $PATH
+	6. Check the version of qmake
+		qmake -v
+	7. Install some libraries
+		OpenGL: sudo apt-get install ***freeglut3-dev***	libgl1-mesa-dev	
+		boost:  sudo apt-get install libboost-dev
+		zlib: sudo pacman -S zlib
+		libCurl: sudo apt-get install libcurl4-openssl-dev
+		md5:	libssl-dev
+
+
+gtk installation:
+	apt-get install libgtk2.0-dev
+
+VNC TOOLS
+	vinagre xxx.xxx.xxx.75:2
+
+APACHE WEB SERVICE:
+	https://wiki.archlinux.org/index.php/Apache_HTTP_Server
+	1. install apache
+		sudo pacman -S apache
+	2. start up apache
+		sudo systemctl start httpd
+	3. prepare webpages
+		copy web site to /srv/http/
+		change the access permission
+	4. http://localhost/x.html
+TOMCAT 
+	https://wiki.archlinux.org/index.php/tomcat
+	1. install jre:	
+		sudo pacman -S jdk7-openjdk
+	2. set path for jre
+
+Sha - 1 and base64 encode
+	echo -n "Rch57iMlOX8yitLkYpJw3w==258EAFA5-E914-47DA-95CA-C5AB0DC85B11" | openssl sha1 -binary | openssl base64
+
+Remove warnings when compile a project:
+	Add -w in the CFLAGS and CXXFLAGS of Makefile
+
+uninstall packet / remove packet:
+	pacman -Rns <name>
+
+TOMCAT INSTALLATION:
+	https://wiki.archlinux.org/index.php/tomcat
+
+TOMCAT CONFIGURATION:
+	/usr/share/tomcat7/conf/tomcat-users.xml
+	
+	<role rolename="tomcat"/>
+  	<role rolename="manager-gui"/>
+ 	<user username="admin" password="tomcat" roles="tomcat,manager-gui"/>
+
+ENABLE tomcat catalina.err and catalina.out
+	1. copy systemd file /lib/systemd/system/tomcat7.service to /etc/systemd/system/tomcat7.service and change both SYSLOG for the absolute paths(example: /var/log/tomcat7/catalina.err) of log files.
+	2. restart tomcat	systemctl restart tomcat7
+	3. sudo systemctl daemon-reload
+
+sftp with nautilus:
+	echo 'sftp://dev-release@38.103.152.185' | xargs nautilus --browser
+	nautilus sftp://wanhui@xxx.xxx.xxx.222
+	type sftp://wanhui@xxx.xxx.xxx.222 in the address of nautilus
+
+	1.login to sftp server:
+		sftp user@ip
+	2.upload files to sftp server:
+		a)lcd (lls) to local directory
+		b)cd to destination directory on ftp server
+		c)put localfile
+	3.download files to sftp server:
+		a)cd to source directory of ftp server
+		b)lcd to local directory
+		c)get remotefile
+	4.delete chmod are same as local operation
+
+		
+Arch linux chinese support:
+	pacman -S adobe-source-han-sans-cn-fonts
+Synchronize time:
+	pacman -S ntp
+	systemctl start ntpd.service
+
+ssh without password
+	http://www.linuxproblem.org/art_9.html
+	wanhui$ ssh-keygen -t rsa
+		Generating public/private rsa key pair.
+		Enter file in which to save the key (/home/wanhui/.ssh/id_rsa): 
+		Created directory '/home/wanhui/.ssh'.
+		Enter passphrase (empty for no passphrase): 
+		Enter same passphrase again: 
+		Your identification has been saved in /home/wanhui/.ssh/id_rsa.
+		Your public key has been saved in /home/wanhui/.ssh/id_rsa.pub.
+		The key fingerprint is:
+		3e:4f:05:79:3a:9f:96:7c:3b:ad:e9:58:37:bc:37:e4 a@A
+	wanhui$ ssh b@B mkdir -p .ssh
+		b@B's password: 
+	wanhui$ cat .ssh/id_rsa.pub | ssh b@B 'cat >> .ssh/authorized_keys'
+		b@B's password: 
+	wanhui$ ssh b@B
+
+mount remote directory
+	sshfs user@computerName:/path/ localPath
+unmount remote directory
+	fusermount -u PATH
+
+compile c++ code with AES encryption
+	gcc main.cpp -o main -lgcrypt -lgpg-error
+
+
+create executable jar
+	jar cfe path/myexe.jar classNameContainsMainMethod *.class
+
+create executable jar with external jars
+
+	1. prepare libs
+		./libs/dom4j.jar
+		./libs/swing.jar
+	2. create manifest file	myManifestFile.mf
+		Manifest-Version: 1.0
+		Class-Path:	libs/dom4j.jar libs/swing.jar
+		Main-Class: App
+	3. jar -cvfm App.jar myManifestFile.mf x.class y.class
+
+compile java with external jar
+	javac -d "desPath" -cp | -classpath "sorce1.jar:source2.jar" source1.java source2.java
+	javac -d "../bin/" -cp "../lib1/x.jar:../lib2/y.jar" x.java y.java
+
+run *.class
+	java -classpath | -cp ".:../lib/dom4j.jar:../lib/swingx.jar:" App
+
+run *.jar
+	java -jar App.jar
+
+gcc 4.9.3 on xxx.xxx.xxx.251
+	1. source export.sh 
+		CONTENT:export PATH=$HOME/gcc-4.9.3/bin:$PATH
+		MEANING:user gcc 4.9.3 as the default compiler
+	
+grep pattern from files
+	grep "###" fileName
+	example:
+		grep "Hello" /var/log/*.txt
+	grep with line number
+	example:
+		grep -n key file
+		cat file | grep -n key
+
+	grep ignore case
+		grep -i
+	grep or
+		grep 'pattern1\|pattern2' filename
+		grep -E 'pattern1|pattern2' filename
+		grep -e pattern1 -e pattern2 filename
+		grep -e pattern1 -e pattern2 filename
+	grep and
+		grep -E 'pattern1.*pattern2' filename
+		grep -E 'pattern1.*pattern2|pattern2.*pattern1' filename
+		grep -E 'pattern1' filename | grep -E 'pattern2'
+	grep not
+count lines
+	wc -l
+	example:
+	cat x.txt | wc -l
+	ls * | wc -l
+
+gdb:
+	http://www.cs.swarthmore.edu/~newhall/unixhelp/howto_gdb.html#badprog
+
+example of Makefile:
+	INCLPATH +=/usr/include
+	#CFLAGS += -std=c99
+	CFLAGS += -std=c11
+	OBJECTS = fileExplorer.o  findandreplace.o  log.o  main.o  tools.o
+
+	YaoApp: $(OBJECTS)
+		gcc $(OBJECTS) $(LIBS) -o YaoApp
+
+	fileExplorer.o: ../fileExplorer.c ../fileExplorer.h
+		gcc $(CFLAGS) -o fileExplorer.o -c ../fileExplorer.c -I$(INCLPATH)
+	findandreplace.o: ../findandreplace.c ../findandreplace.h
+		gcc $(CFLAGS) -o findandreplace.o -c ../findandreplace.c -I$(INCLPATH)
+	log.o: ../log.c ../log.h
+		gcc $(CFLAGS) -o log.o -c ../log.c -I$(INCLPATH)
+	main.o: ../main.c
+		gcc $(CFLAGS) -o main.o -c ../main.c -I$(INCLPATH)
+	tools.o: ../tools.c ../tools.h
+		gcc $(CFLAGS) -o tools.o -c ../tools.c -I$(INCLPATH)
+
+	clean:
+		rm *.o
+
+
+qt project file support google test(gtest)
+	LIBS += -lgtest
+
+boost test example:
+	#include <boost/test/minimal.hpp>
+
+	int add( int i, int j ) { return i+j; }
+
+	int test_main( int, char *[] )             // note the name!
+	{
+	    // six ways to detect and report the same error:
+	    BOOST_CHECK( add( 2,2 ) == 4 );        // #1 continues on error
+	    BOOST_REQUIRE( add( 2,2 ) == 4 );      // #2 throws on error
+	    if( add( 2,2 ) != 4 )
+		BOOST_ERROR( "Ouch..." );          // #3 continues on error
+	    if( add( 2,2 ) != 4 )
+		BOOST_FAIL( "Ouch..." );           // #4 throws on error
+	    if( add( 2,2 ) != 4 ) throw "Oops..."; // #5 throws on error
+
+	    return add( 2, 2 ) == 4 ? 0 : 1;       // #6 returns error code
+	}
+
+	//Compiliation: g++ -o example example.cpp -lboost_unit_test_framework
+
+google test(gtest) example:
+	#include <gtest/gtest.h>
+
+	double squareRoot (double num) { 
+	    if (num < 0.0) { 
+		std::cerr << "Error: Negative Input\n";
+		exit(-1);
+	    }
+	    // Code for 0 and +ve numbers follow…
+	}
+
+	TEST (SquareRootTest, ZeroAndNegativeNos) { 
+	    ASSERT_EQ (0.0, squareRoot (0.0));
+	    ASSERT_EXIT (squareRoot (-22.0), ::testing::ExitedWithCode(-1), "Error: Negative Input");
+	}
+
+	int main(int argc, char **argv) {
+	  ::testing::InitGoogleTest(&argc, argv);
+	  return RUN_ALL_TESTS();
+	}
+
+
+	//Compiliation: g++ -isystem ${GTEST_DIR}/include gtest.cpp -lgtest -o gtest
+
+Image to text (OCR):
+	png is prefferred.
+	gocr -i imageName > textFileName
+
+Git branch description:
+	Add description:
+		git branch --edit-description
+	Show description:
+		git config branch.dev.description
+
+use ssmtp send mail from command line:
+	mail -s "test" -a /home/wanhui/Documents/fbb/Fan_Bing_Bing_1.jpg yao.wanhui@gmail.com < /tmp/mail
+	echo "content" | mail -s "Subject" -a attachment mailId
+
+Qt static library:
+	0. resolve dependencies:
+		install the libs mentioned in qtbase/src/plugins/platforms/xcb/README
+
+	1. compile static version of Qt (module by module, qt-base first)
+		1.1 download source code (http://download.qt.io/official_releases/qt/5.5/5.5.1/submodules/)
+		1.2 extracted and go to the source code directory
+		1.3 ./configure -static -prefix /home/wanhui/Qt_static_5.5
+		1.4 make -j8
+		1.5 make install
+
+		1.1 download source code (http://download.qt.io/official_releases/qt/5.5/5.5.1/submodules/) to $HOME/Downloads/qt5.5.1.tar.gz
+		1.2 extract the file to $HOME/Downloads/qt5.5.1_source/
+		1.3 mkdir $HOME/Downloads/qt5.5.1_obj
+		1.4 cd $HOME/Downloads/qt5.5.1_obj
+		1.5 $HOME/Downloads/qt5.5.1_source/configure -static -prefix /home/wanhui/Qt_static_5.5
+		1.6 make -j8
+		1.7 make install
+
+	2. compile user application
+		2.1 set static qt to the path
+			PATH=/path/to/Qt/bin:$PATH
+			export PATH
+		2.2 qmake 
+		2.3 make
+	3. test is it static version
+		ldd myapp | grep Qt
+
+	4. compile other module(example:qwebkit)
+		download, extract, /home/wanhui/Qt_static_5.5/bin/qmake, make
+
+yum command
+	yum commands are typically run as yum <command> <package name/s>. By default, yum will automatically attempt to check all configured repositories to resolve all package dependencies during an installation/upgrade.
+
+	The following is a list of the most commonly-used yum commands. For a complete list of available yum commands, refer to man yum.
+
+	yum install <package name/s>
+	Used to install the latest version of a package or group of packages. If no package matches the specified package name(s), they are assumed to be a shell glob, and any matches are then installed.
+
+	yum update <package name/s>
+	Used to update the specified packages to the latest available version. If no package name/s are specified, then yum will attempt to update all installed packages.
+
+	If the --obsoletes option is used (i.e. yum --obsoletes <package name/s>, yum will process obsolete packages. As such, packages that are obsoleted accross updates will be removed and replaced accordingly.
+
+	yum check-update
+	This command allows you to determine whether any updates are available for your installed packages. yum returns a list of all package updates from all repositories if any are available.
+
+	yum remove <package name/s>
+	Used to remove specified packages, along with any other packages dependent on the packages being removed.
+
+	yum provides <file name>
+	Used to determine which packages provide a specific file or feature.
+
+	yum search <keyword>
+	This command is used to find any packages containing the specified keyword in the description, summary, packager and package name fields of RPMs in all repositories.
+
+	yum localinstall <absolute path to package name/s>
+	Used when using yum to install a package located locally in the machine.
+
+compile gcc
+	gcc.parentinggamerica.com/releases/
+	https://gcc.gnu.org/wiki/InstallingGCC
+	https://gcc.gnu.org/install/prerequisites.html
+	tar xzf gcc-4.6.2.tar.gz
+	cd gcc-4.6.2
+	./contrib/download_prerequisites
+	cd ..
+	mkdir objdir
+	cd objdir
+	$PWD/../gcc-4.6.2/configure --prefix=$HOME/gcc-4.6.2 --enable-languages=c,c++,fortran,go --disable-multilib
+	make
+	make install
+
+	export PATH=$HOME/gcc-4.6.2/bin:$PATH
+
+shared library example:
+	1. create file mymath.h
+		int add(int a, int b);
+	2. create file mymath.cpp
+		#include "mymath.h"
+		int add(int a, int b){
+			return a + b;
+		}
+	3. compile this file as a shared library libMyMath.so
+		g++ -shared -o libMyMath.so mymath.cpp
+	4. create file app.cpp
+		#include "mymath.h"
+		#include <iostream>
+		int main(){
+			std::cout << "3 + 5 = " << add(3, 5) << std::endl;
+			return 0;
+		}
+	5. compile the app.cpp
+		g++ -o app app.cpp -L$PWD -lMyMath
+	6. test app
+		6.1 LD_LIBRARY_PATH=$PWD ./app
+		6.2 export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
+		    ./app
+
+use qt to generate shared library and testing...
+	1. generate shared library project qtlib which contains qtlib.pro, math.h, math.cpp
+	#qtlib.pro
+		TEMPLATE = lib
+		HEADERS = math.h
+		SOURCE = math.cpp
+	//math.h
+		int add(int, int);
+	//math.cpp
+		#include "math.h"
+		int add(int a, int b){
+			return a + b;
+		}
+	2. compile qtlib to generate libqtlib.so
+		qmake -o makefile ./qtlib.pro
+		make
+	3. generate testing project qtlibtest which contains qtlibtest.pro, app.cpp
+	#qtlibtest.pro
+		SOURCES = app.cpp
+		INCLUDEPATH += /tmp/qtlib
+		LIBS += -L/tmp/qtlib -lqtlib
+		TARGET = testQtSharedLib
+	//app.cpp
+		#include "math. h"
+		#include <iostream>
+		int main(){
+			std::cout << "3 + 5 = " << add(3, 5) << std::endl;
+			return 0;
+		}
+	4. compile qtlibtest
+		qmake -o makefile ./qtlibtest.pro
+		make
+	5. run test
+		5.1 export LD_LIBRARY_PATH=$PWD/..:$LD_LIBRARY_PATH
+		5.2 ./testQtSharedLib
+
+autotools components:
+	1. GNU Autoconf
+	2. GNU Automake
+	3. GNU Libtool
+	4. Gnulib	
+
+ulimit — set or report file size limit
+	check stack size
+	ulimit -a | grep stack
+	check the resource usage in process 9265
+	cat /proc/9265/limits
+
+git -> old version -> current version
+current branch name: test
+	git checkout commit_id
+	git checkout test
+
+git log --grep "some note" | grep "commit" |  cut -d" " -f2
+git checkout  "$(git log --grep "sss" | grep "commit" | cut -d" " -f2)"
+git log --grep "sss" | grep "commit" | cut -d" " -f2 | xargs git checkout
+
+
+command parameters from file or pipe
+cmd "$(cat file)"
+cmd "$(< file)"
+
+Linux command line shortcut and useful commands:
+	community.linuxmint.com/tutorial/view/244
+	https://wiki.archlinux.org/index.php/Keyboard_shortcuts
+	lnag.sourceforge.net/lnag_html/node5.html
+	www.mediacollege.com/linux/command/linux-command.html
+	ss64.com/bash/
+
+command line shortcuts:
+	ctrl+d : delete next char
+	crtl+k : delete rest of line
+	ctrl+a : go to start
+	ctrl+e : go to end of line
+	ctrl+b : go backwards one letter without deleting
+	ctrl+f : go forward one letter without deleting
+	alt+b  : go backwards one word without deleting
+	alt+f  : go forward one word without deleting
+	ctrl+u : delete whole line
+	ctrl+t : swap 2 letter under cursor
+	esc+t  : swap 2 words under cursor
+	alt+*  : list all possible options
+
+Search / find command by subject:
+	apropos foo: List manual pages for subject
+	man -k foo: same as above
+	man -f foo: search title 
+
+switch virtual terminal:
+	Alt+F1, F2....
+	Alt+ <--
+	Alt+ -->
+	Ctrl + Alt + F1, F2...
+
+execute cmd from history:
+	!line number
+
+record terminal log:
+	script /path/filename
+		//every thing displayed on screen will be record to /path/filename
+	exit	//finish recording
+
+nc [gnu-netcat]echo server-client
+	run on server: netcat -l -p port
+			nc -l -p 12345
+	run on client: netcat ip port
+			nc xxx.xxx.xxx.160 12345
+
+Install software from pkg
+	1. Download snapshot
+	2. Extract it
+	3. makepkg
+	4. install with pacman -U (Resolve dependencies may needed)
+
+	example: install yaourt
+	1. Download snapshot from https://aur.archlinux.org/packages/yaourt
+	2. tar -zxvf yaourt.tar.gz
+	3. cd yaourt;makepkg
+	4. pacman -U yaourt.pkg.tar.gz
+	
+Install software from AUR
+	yaourt chromium
+
+screen sharing
+	A host: yao@xxx.xxx.xxx.222
+	B host: wanhui@xxx.xxx.xxx.160
+	
+	A run: screen -S testTerminal
+	B run: ssh -t yao@xxx.xxx.xxx.222 screen -x testTerminal
+
+Find matching string from some files, and print the files name
+	for filename in *; do grep '' /dev/null '$filename' | tail -n5 | grep '~'; done 
+
+SSL Certificate:
+	http://kb.kerio.com/product/kerio-connect/server-configuration/ssl-certificates/adding-trusted-root-certificates-to-the-server-1605.html
+	1. update from rrepository:
+		sudo update-ca-certificates
+
+		http://www.ubuntu.com/usn/usn-2154-1/
+		http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate
+	2. doload certificate then install
+		2.1 Create a directory for extra CA certificates in /usr/share/ca-certificates:
+			sudo mkdir /usr/share/ca-certificates/extra
+		2.2 Copy the CA .crt file to this directory:
+			sudo cp foo.crt /usr/share/ca-certificates/extra/foo.crt
+		2.3 Let Ubuntu add the .crt file's path relative to /usr/share/ca-certificates to /etc/ca-certificates.conf:
+			sudo dpkg-reconfigure ca-certificates
+
+c++ function signature
+	c++filt _Z1fv****
+
+Decompile 
+	readelf -s test.o
+
+Gnu bitutils
+	http://www.gnu.org/software/binutils/
+
+Record screen video: (start and stop)
+	ctrl + shift + alt + R
+
+Show all users:
+	cut -d: -f1 /etc/passwd
+
+Show user id:
+	id username
+		id
+		id laoyao
+change user password expiry info:
+	chage -l username
+
+Add users:
+	1. add user with user name
+		useradd yao1
+	2. change password for user name
+		passwd yao1
+	3. add user with user name and group name
+		useradd -g users yao2
+	4. add user with user name user id and group id
+		useradd -u 1002 -g 500 yao3
+	5. add user to multiple group
+		useradd -u 1003 -g users, wheels yao4
+	6. add user  without home
+		useradd -M yao5
+	7. add user with home
+		useradd -m -d /home/yao6 -s /bin/bash -c "my comments" -u 1005 -g users yao6
+
+cut command:
+	http://www.thegeekstuff.com/2013/06/cut-command-examples/
+
+Debug things:
+	//app.cpp
+	#include <iostream>
+	int main(){
+	#ifdef MYDEBUG
+		std::cout << "Debug mode" << std::endl;
+	#else
+		std::cout << "Release mode" << std::endl;
+	#endif
+	}
+
+	g++ -DMYDEBUG -o app app.cpp
+	
+

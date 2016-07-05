@@ -1,0 +1,76 @@
+1. format of a python file
+	#!/usr/bin/python
+	...
+2. execute a python file
+	./test.py
+	python test.py
+3. output
+	print("Hello, Python!");
+4. Multi-Line Statements
+	total = item_one + \
+        item_two + \
+        item_three
+5. Quotation
+	Python accepts single ('), double (") and triple (''' or """) quotes to denote string literals
+	word = 'word'
+	sentence = "This is a sentence."
+	paragraph = """This is a paragraph. It is made up of multiple lines and sentences."""
+6. Comments
+	# This is a comment
+
+7. Multiple Statements on a Single Line
+	import sys; x = 'foo'; sys.stdout.write(x + '\n')
+8. Multiple Assignment
+	a = b = c = 1
+	a, b, c = 1, 2, "john"
+9. Standard Data Types
+	Numbers
+	String
+	List
+	Tuple
+	Dictionary
+
+10. Delete reference of variables
+	del var
+	del var_a, var_b
+11. String
+	str = 'Hello World!'
+	print(str)		# Prints complete string
+	print(str[0])		# Prints first character of the string
+	print(str[2:5])		# Prints characters starting from 3rd to 5th
+	print(str[2:])		# Prints string starting from 3rd character
+	print(str * 2)		# Prints string two times
+	print(str + "TEST")	# Prints concatenated string
+
+12. Lists
+	list = ['abcd', 786 , 2.23, 'john', 70.2]
+	tinylist = [123, 'john']
+	print(list)		# Prints complete list
+	print(list[0])		# Prints first element of the list
+	print(list[1:3])	# Prints elements starting from 2nd till 3rd 
+	print(list[2:])		# Prints elements starting from 3rd element
+	print(tinylist * 2)	# Prints list two times
+	print(list + tinylist)	# Prints concatenated lists
+13. Tuples  (Read-only Lists)
+	tuple = ('abcd', 786 , 2.23, 'john', 70.2)
+	tinytuple = (123, 'john')
+	print(tuple)		# Prints complete list
+	print(tuple[0])		# Prints first element of the list
+	print(tuple[1:3])	# Prints elements starting from 2nd till 3rd 
+	print(tuple[2:])	# Prints elements starting from 3rd element
+	print(tinytuple * 2)	# Prints list two times
+	print(tuple+tinytuple)	# Prints concatenated lists
+	
+14. Dictionary
+	dict = {}
+	dict['one'] = "This is one"
+	dict[2]     = "This is two"
+
+	tinydict = {'name': 'john','code':6734, 'dept': 'sales'}
+
+
+	print(dict['one'])		# Prints value for 'one' key
+	print(dict[2])			# Prints value for 2 key
+	print(tinydict)			# Prints complete dictionary
+	print(tinydict.keys())		# Prints all the keys
+	print(tinydict.values())	# Prints all the values
