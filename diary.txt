@@ -612,7 +612,11 @@ Add users:
 		useradd -M yao5
 	7. add user with home
 		useradd -m -d /home/yao6 -s /bin/bash -c "my comments" -u 1005 -g users yao6
-
+Delete users:
+	1. delete user, keep his home
+		userdel yao
+	2. delete user and his home dir
+		userdel -r yao
 cut command:
 	http://www.thegeekstuff.com/2013/06/cut-command-examples/
 
