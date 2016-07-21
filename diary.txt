@@ -633,4 +633,16 @@ Debug things:
 
 	g++ -DMYDEBUG -o app app.cpp
 	
+nm - list symbols from object files
 
+limit user memory to 1,000,000 KB
+	edit /etc/security/limits.conf
+	add this line:
+	username hard as 1000000
+	restart computer
+	user command "ulimits -a" to see result
+memory check:
+	free -h -s 3 -c 4
+	-h: show in human reading mode
+	-s: do it each 3 seconds
+	-c: count 3 times
