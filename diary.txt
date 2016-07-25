@@ -558,7 +558,9 @@ screen sharing
 	B run: ssh -t yao@xxx.xxx.xxx.222 screen -x testTerminal
 
 Find matching string from some files, and print the files name
-	for filename in *; do grep '' /dev/null '$filename' | tail -n5 | grep '~'; done 
+	for f in *; do echo ${f}; cat -n ${f} | grep 'keywords'; done
+	for filename in *; do grep '' /dev/null ${filename} | tail -n5 | grep '~'; done 
+
 
 SSL Certificate:
 	http://kb.kerio.com/product/kerio-connect/server-configuration/ssl-certificates/adding-trusted-root-certificates-to-the-server-1605.html
